@@ -1,0 +1,26 @@
+title: Qwertzy's lair▮
+author: qwertzy
+subtitle: The (mis)adventures of a malware analyst wanna be
+
+url: "https://qwertzy-antonio-godinho.github.io"
+baseurl: "/"
+
+footer_only_homepage: true
+footer_url:
+footer_text:
+
+profile-picture:
+favicon_location: assets/favicon.ico
+
+permalink: /:year-:month-:day-:title/
+sass:
+  style: compressed
+  sass_dir: css
+
+navbar:
+  - name: "▰ dev"
+    link: "dev"
+  - name: "▰ notes"
+    link: "notes"
+  - name: "▰ whoami"
+    link: "about"
