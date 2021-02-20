@@ -33,10 +33,6 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-code {
-  background-color: #d8e7ff;
-  color: #002b72;
-}
 
 // Divs
 // --------------------------------------------------------------------------------
@@ -63,8 +59,9 @@ code {
     margin-left: 20px;
   }
   li {
+    font-size: 18px;
     list-style-type: none;
-    margin: 0 5px 0 10px;
+    margin: 0 5px 0 5px;
   }
 
   padding: 30px 0 20px 0;
@@ -177,6 +174,45 @@ code {
   }
 }
 
+// Scroll
+// --------------------------------------------------------------------------------
+
+.scroll {
+  cursor: pointer;
+  width: 40px;
+  height: 3px;
+  position: fixed;
+  bottom: 80px;
+  right: -80px;
+  background-color: $accent;
+  color: $accent;
+  font-size: 44px;
+  text-align: center;
+  transition: 300ms;
+}
+
+.scroll p {
+  margin-top: 10px;
+}
+
+.scroll:hover p {
+  animation-name: rotate;
+  animation-duration: 300ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes rotate {
+  from {margin-top: 15px}
+  to {margin-top: 5px}
+}
+
+.visible {
+  right: 30px;
+  transition: all 400ms;
+  transform: translate(360deg)
+}
+
 // Typography
 // --------------------------------------------------------------------------------
 
@@ -186,18 +222,18 @@ code {
   h2,
   h3,
   h4 {
-    margin-block-start: 2em !important;
+    margin-block-start: 1em !important;
     margin-block-end: 0em !important;
   }
-  h1:after,
-  h2:after,
-  h3:after,
-  h4:after {
+  h1:after {
     content: "";
     display: block;
-    width: 50%;
+    width: 100%;
     border-top: 0.5px solid rgba(0, 0, 0, 0.1);
     border-bottom: 0.5px solid rgba(50, 50, 50, 0.3);
+  }
+  h1:before {
+    content: "▨ "
   }
 
   ol {

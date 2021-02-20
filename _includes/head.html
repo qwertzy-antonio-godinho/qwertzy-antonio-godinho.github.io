@@ -36,3 +36,27 @@
   <meta name="twitter:description" content="{{ desc }}" />
   <meta name="twitter:image" content="{{ favicon_location }}" />
 </head>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ site.url }}{{ site.baseurl}}/css/prism.css"
+/>
+<script src="{{ site.url }}{{ site.baseurl}}/js/prism.js"></script>
+<script>
+  window.addEventListener("scroll", (e) => {
+    var el = document.getElementById("jsScroll");
+    if (window.scrollY > 200) {
+      el.classList.add("visible");
+    } else {
+      el.classList.remove("visible");
+    }
+  });
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+</script>
+<div id="jsScroll" class="scroll" onclick="scrollToTop();"><p>△</p></div>

@@ -20,6 +20,8 @@ sass:
 navbar:
   - name: "▰ dev"
     link: "dev"
+  - name: "▰ lab"
+    link: "lab"
   - name: "▰ notes"
     link: "notes"
   - name: "▰ whoami"
