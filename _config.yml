@@ -3,7 +3,7 @@ author: qwertzy
 subtitle: The (mis)adventures of a malware analyst wanna be
 
 url: "https://qwertzy-antonio-godinho.github.io"
-baseurl: "/"
+baseurl: ""
 
 footer_only_homepage: true
 footer_url:
@@ -20,9 +20,7 @@ sass:
 navbar:
   - name: "▰ dev"
     link: "dev"
-  - name: "▰ lab"
-    link: "lab"
   - name: "▰ notes"
     link: "notes"
-  - name: "▰ whoami"
+  - name: "▰ about"
     link: "about"

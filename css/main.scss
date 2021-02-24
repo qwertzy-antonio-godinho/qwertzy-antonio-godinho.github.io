@@ -184,15 +184,18 @@ hr {
   position: fixed;
   bottom: 80px;
   right: -80px;
+  box-shadow: 0px 0px 4px $background;
   background-color: $accent;
   color: $accent;
   font-size: 44px;
   text-align: center;
   transition: 300ms;
+  z-index: 1;
 }
 
 .scroll p {
   margin-top: 10px;
+  text-shadow: 0px 0px 4px $background;
 }
 
 .scroll:hover p {
@@ -203,14 +206,18 @@ hr {
 }
 
 @keyframes rotate {
-  from {margin-top: 15px}
-  to {margin-top: 5px}
+  from {
+    margin-top: 15px;
+  }
+  to {
+    margin-top: 5px;
+  }
 }
 
 .visible {
   right: 30px;
   transition: all 400ms;
-  transform: translate(360deg)
+  transform: translate(360deg);
 }
 
 // Typography
@@ -233,7 +240,7 @@ hr {
     border-bottom: 0.5px solid rgba(50, 50, 50, 0.3);
   }
   h1:before {
-    content: "▨ "
+    content: "▨ ";
   }
 
   ol {
@@ -282,7 +289,6 @@ hr {
     }
   }
   img {
-    border: rgba(10, 5, 5, 0.596) 1px solid;
     padding: 0px;
     text-align: center;
     margin: 10px 10px 10px 10px;
@@ -350,4 +356,23 @@ table tr td :first-child {
 table tr th :last-child,
 table tr td :last-child {
   margin: 0;
+}
+
+// TOC
+// --------------------------------------------------------------------------------
+
+.table-of-contents {
+  line-height: 1.1;
+  float: right;
+  width: 20%;
+  background: #eee;
+  font-size: 0.8em;
+  padding: 1em 2em;
+  margin: 0 0 2em 3em;
+}
+.table-of-contents ul {
+  padding: 0;
+}
+.table-of-contents li {
+  margin: 0 0 0.25em 0;
 }
