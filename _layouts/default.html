@@ -3,11 +3,16 @@
   {% include head.html %}
 
   <body>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
     <div class="container">
       {% include navbar.html %}
       <div class="page-title">{{page.title}}</div>
-      <div class="content">{% include toc.html html=content ordered=true class="table-of-contents" %}{{ content }}</div>
+      <div class="content">
+        {% include toc.html html=content ordered=true class="table-of-contents"
+        %}{{ content }}
+      </div>
       {% include footer.html %}
     </div>
     <div id="jsScroll" class="scroll" onclick="scrollToTop();"><p>△</p></div>
