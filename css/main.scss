@@ -59,14 +59,14 @@ hr {
     margin-left: 20px;
   }
   li {
-    font-size: 18px;
+    font-size: 1.1em;
     list-style-type: none;
     margin: 0 5px 0 5px;
   }
 
   padding: 30px 0 20px 0;
   .site-title {
-    font-size: 36px;
+    font-size: 2.0em;
     display: inline-block;
     font-weight: bold;
     color: $background;
@@ -83,7 +83,7 @@ hr {
   .title {
     max-width: 500px;
     display: inline-block;
-    font-size: 24px;
+    font-size: 1.2em;
   }
   .details {
     @extend .pull-right;
@@ -106,7 +106,7 @@ hr {
 
 .page-title {
   text-align: center;
-  font-size: xx-large;
+  font-size: 1.6em;
   font-weight: bold;
   line-height: 2;
 }
@@ -224,7 +224,19 @@ hr {
 // --------------------------------------------------------------------------------
 
 .content {
-  line-height: 1.5;
+  line-height: 1.8;
+  h1 {
+    font-size: 1.4em;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  h4 {
+    font-size: 0.8em;
+  }
   h1,
   h2,
   h3,
@@ -322,7 +334,7 @@ hr {
 }
 
 table {
-  margin: 15px 0;
+  margin: 10px 0;
   border-collapse: collapse;
   width: 100%;
   padding: 0;
@@ -338,16 +350,19 @@ table tr:nth-child(2n) {
 }
 table tr th {
   font-weight: bold;
+  background-color: $accent;
+  color: $background;
   border: 1px solid #cccccc;
   text-align: left;
   margin: 0;
-  padding: 6px 13px;
+  padding: 3px 12px;
 }
 table tr td {
+  font-size: 0.9em;
   border: 1px solid #cccccc;
   text-align: left;
   margin: 0;
-  padding: 6px 13px;
+  padding: 3px 12px;
 }
 table tr th :first-child,
 table tr td :first-child {
@@ -361,18 +376,22 @@ table tr td :last-child {
 // TOC
 // --------------------------------------------------------------------------------
 
+.table-of-contents:before {
+  content: "Index";
+  font-weight: bold;
+  font-size: 1.4em;
+}
 .table-of-contents {
+  border-style: dotted;
+  margin: 0em 0em 1.5em 0em;
   line-height: 1.1;
-  float: right;
-  width: 20%;
   background: #eee;
-  font-size: 0.8em;
-  padding: 1em 2em;
-  margin: 0 0 2em 3em;
+  font-size: 0.9em;
 }
 .table-of-contents ul {
+  margin: 0em 0em 0em 2em;
   padding: 0;
 }
 .table-of-contents li {
-  margin: 0 0 0.25em 0;
+  padding: 0;
 }
