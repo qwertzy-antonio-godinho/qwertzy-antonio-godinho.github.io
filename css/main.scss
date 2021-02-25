@@ -142,7 +142,7 @@ hr {
 
 @media (max-width: 650px) {
   .container {
-    max-width: 85%;
+    max-width: 90%;
   }
   .navbar {
     ul {
@@ -167,6 +167,7 @@ hr {
       margin: 0;
     }
     .pull-left {
+      text-align: left;
       float: none;
     }
     .site-title {
@@ -336,6 +337,7 @@ hr {
 }
 
 table {
+  font-size: 0.8em;
   margin: 10px 0;
   border-collapse: collapse;
   width: 100%;
@@ -360,7 +362,6 @@ table tr th {
   padding: 3px 3px 3px 6px;
 }
 table tr td {
-  font-size: 0.8em;
   border: 1px solid #cccccc;
   text-align: left;
   margin: 0;
