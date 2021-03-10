@@ -2,7 +2,7 @@
 layout: default
 ---
 
-The following are a list of resources I find useful for anyone interested in Malware analysis, Reverse engineering or just Computer science in general:
+The following are a list of resources I find useful for anyone interested in Malware analysis, Reverse engineering or just computer science in general:
 
 # YouTube
 
@@ -34,8 +34,6 @@ The following are a list of resources I find useful for anyone interested in Mal
 
 # Books
 
-Don't do like I did and start with the "The Art of Memory Forensics: Detecting Malware and Threats in Windows, Linux, and Mac Memory" if you're a beginner -- you're in for a crash! These books while distinct, some of the contents overlap which is a good thing as you'll read multiple times the same thing but written in a different maner. My suggestion is to start with the easiest, by the following order:
-
 1. [Malware Analyst's Cookbook and DVD: Tools and Techniques for Fighting Malicious Code](https://www.amazon.com/Malware-Analysts-Cookbook-DVD-Techniques/dp/0470613033)
 2. [Practical Malware Analysis: The Hands-On Guide to Dissecting Malicious Software](https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901)
 3. [The Ghidra Book: The Definitive Guide](https://www.amazon.com/Ghidra-Book-Definitive-Guide/dp/1718501021)
@@ -43,29 +41,14 @@ Don't do like I did and start with the "The Art of Memory Forensics: Detecting M
 
 # Twitter
 
-Most, if not all Malware analysts use Twitter to discuss events, tools, samples and sometimes, talk about new job openings. You should definitely open an account if you haven't one.
-By searching Twitter with #opendir hashtag you can find fresh samples posted by researchers that you can use for your write-ups. My handle is qwertzy-qwertzy-qwertzy @qwertxy
+#opendir
 
 # Reddit
-
-There are two Reddit communities (possibly more) you can join that deal with Malware and you can post questions or start discussions:
 
 - [Reverse Engineering](https://www.reddit.com/r/ReverseEngineering/)
 - [Malware Analysis & Reports](https://www.reddit.com/r/Malware/)
 
 # IRC
 
-The same goes for IRC:
-
 irc.freenode.net
 ##re
-
-# Cheat-Cheats
-
-# CTFs
-
-# Reports
-
-# OSINT
-
-# Virtual Machines
