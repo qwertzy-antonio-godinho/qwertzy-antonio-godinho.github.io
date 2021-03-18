@@ -5,37 +5,58 @@ subtitle: Case study - Abusing Internet Archive to deliver Malware
 tags: [malware, analysis]
 ---
 
-# Star date 16th March 2021:
+# Star date, the 16th of March 2021:
 
 Original Twitter post:
 
 ![](../assets/Abusing-Internet-Archive/twitter-post.png)
 
-Decided to download the files from the server so I could train my analysis. 
+Following on the above tweet I've decided to try to quickly download the files from the server and start analysing fresh malware samples.
 
-I've downloaded txt, xml, sqlite and torrent files from directories named atomic1 and eset_202102:
+# Objectives:
+
+- Improve analysis skills
+- See how long it takes me to analyse
+- Identify shortcomings with the toolset available in the lab
+- See how far I can go without any prior knowledge of the sample
+- Identify analysis gaps to later improve
+
+# Part 1 - Initial assessment
+## Aquiring the samples
+
+Using the web browser I typed the URL link and downloaded all files hosted on the website to a virtual machine. The list of file extensions included txt, xml, sqlite and torrent files from existing directories named atomic1 and eset_202102:
 
 ![](../assets/Abusing-Internet-Archive/file-list.png)
 
-Comparing files, the only difference was the file name incremented by one, on each directory:
+### Lessons learned:
+
+- Lab needs to provide a way to automate downloading files recursively from a website. At the moment contenders available in the lab include wget and curl.
+
+## A quick first look at the samples
+
+While comparing the files the only difference was in the file name, each file was numbered in ascending order. Another observation made was, the files were simple text files:
 
 ![](../assets/Abusing-Internet-Archive/differences.png)
 
-The first text file, a PowerShell script is used to find Windows Defender status using [Get-MpComputerStatus](https://docs.microsoft.com/en-us/powershell/module/defender/get-mpcomputerstatus?view=windowsserver2019-ps&viewFallbackFrom=win10-ps). Depending on the result, one of two files will be downloaded. Unfortunately, I forgot to download "amsi1.txt" file to check  what it would do to Anti Malware Scan Interface, beginner's mistake!
+The first text file analysed was named "detect1.txt". This file contained a PowerShell script with the purpose of finding the Windows Defender status by using <span class="highlight-green">[Get-MpComputerStatus](https://docs.microsoft.com/en-us/powershell/module/defender/get-mpcomputerstatus?view=windowsserver2019-ps&viewFallbackFrom=win10-ps)</span>. 
+
+Depending on the result, one of two files will be downloaded. 
+
+Unfortunately, I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation (insert face palm here!). By now I'm thinking it's better to pick another tweet, but as I already have files to look at, instead I decide to carry on with the investigation.
 
 ![](../assets/Abusing-Internet-Archive/detect-script.png)
 
-The "eset1.txt" file is a PowerShell script with the extension name changed to txt.
+The new file to be downloaded is named "eset1.txt", and also contains a PowerShell script:
 
 ![](../assets/Abusing-Internet-Archive/eset1-1st-look.png)
 
-Depending on the result of ```if (-not ([System.Management.Automation.PSTypeName]"BP.AMS").Type)``` the script takes a different path. In case the condition is false it executes ```[BP.AMS]::Disable()``` to try to disable Anti Malware Scan.
+Depending on the result of <span class="highlight-green">if (-not ([System.Management.Automation.PSTypeName]"BP.AMS").Type)</span> the script can take a different execution path. 
 
-In case the condition is true it defines 2 variables.
+In case the condition is false, it executes <span class="highlight-green">[BP.AMS]::Disable()</span> to disable the Anti Malware Scan program. And in case the condition is true, it defines 2 variables.
 
 ![](../assets/Abusing-Internet-Archive/eset1-logic.png)
 
-The first variable contains xor'd byte values and the second has the unxor key. for every value in the byte values variable it xor's the value against the predefined key value containing 5 elements, according to the cursor position and it's counter value. The following is an example of the first 6 operations:
+The first variable contains previously xor'd byte values, while the second variable contains what it seems like a key. Following is a block of instructions that apply the logic for every value in the byte values variable, it xor's the value against the predefined key value containing 5 elements according to the cursor position and its counter value. As an example, the first 6 operations of this logic return the following values:
 
 1. ByteArray[0] = 121 xor 52 = 77
 2. ByteArray[1] = 12 xor 86 = 90
@@ -44,19 +65,26 @@ The first variable contains xor'd byte values and the second has the unxor key. 
 5. ByteArray[4] = 62 xor 61 = 3
 6. ByteArray[5] = 52 xor 52 = 0
 
-Convert the resulting values to Unicode strings (16 bits) ```$string = [System.Text.Encoding]::Unicode.GetString($byteArray)``` and pipe the results to a file ```Write-Output $string | Out-File -FilePath c:\output\eset1.bin```, yields a .NET PE executable file which can be loaded into the application domain of the caller.
+I've decided to generate the file for further analysis without executing it. I've added the following lines on to the PowerShell script:
 
-I'm commenting a few lines to be able to safely generate any encoded files:
+<pre><code class="bash">$string = [System.Text.Encoding]::Unicode.GetString($byteArray)
+Write-Output $string | Out-File -FilePath c:\output\eset1.bin</code></pre>
+
+The first line converts the variable to Unicode string (using 16 bits), while the second line allows to the results to a file.
+
+To prevent the code injection operation I have commented a few lines to be able to safely generate the encoded file:
 
 ![](../assets/Abusing-Internet-Archive/eset1-commented-1.png)
 
 ![](../assets/Abusing-Internet-Archive/eset1-commented-2.png)
 
-The last operation in this script is to download a new txt file "atomic1.txt" using ```IEX (New-Object Net.WebClient).DownloadString```. This new file is another PowerShell script, yet again with the extension name changed to "txt". The top of the file:
+The final operation this script performs, is to download a new file named "atomic1.txt" using the <span class="highlight-green">IEX (New-Object Net.WebClient).DownloadString</span> command. 
+
+This file is another PowerShell script, a longer one than the one in the previous file. The top of the file:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-first-look.png)
 
-The end of the file:
+And the end of the file:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-endofscript.png)
 
@@ -86,9 +114,13 @@ The same commented lines in "atomic2":
 
 ![](../assets/Abusing-Internet-Archive/atomic2-commented-2.png)
 
+## Generating the payloads
+
 Using the same approach as with "eset1.txt" file, I've converted each of the variables to Unicode and used ```Write-Output``` and ```Out-File``` to execute the files in a sand-box virtual machine to generate the files:
 
 ![](../assets/Abusing-Internet-Archive/generated-files.png)
+
+## Basic static analysis
 
 After noticing the same file size of a few of the files, I've opened the files in HashMyFiles application to see the hashes of each individual file. Regardless of ```if([System.IO.File]::Exists("C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_compiler.exe"))``` being installed of not, the files generated are the same:
 
@@ -155,3 +187,5 @@ So I decided to upload the files and see if anything would come up:
 ![](../assets/Abusing-Internet-Archive/vt-eset1.png)
 ![](../assets/Abusing-Internet-Archive/vt-atomic444.png)
 ![](../assets/Abusing-Internet-Archive/vt-atomic555.png)
+
+# A deeper look
