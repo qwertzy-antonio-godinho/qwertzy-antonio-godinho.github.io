@@ -52,11 +52,11 @@ I'm commenting a few lines to be able to safely generate any encoded files:
 
 ![](../assets/Abusing-Internet-Archive/eset1-commented-2.png)
 
-The last operation in this script is to download a new txt file "atomic1.txt" using ```IEX (New-Object Net.WebClient).DownloadString```.
+The last operation in this script is to download a new txt file "atomic1.txt" using ```IEX (New-Object Net.WebClient).DownloadString```. This new file is another PowerShell script, yet again with the extension name changed to "txt". The top of the file:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-first-look.png)
 
-This new file is another PowerShell script, yet again with the extension name changed to "txt".
+The end of the file:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-endofscript.png)
 
