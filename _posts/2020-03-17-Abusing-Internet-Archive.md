@@ -21,7 +21,7 @@ Comparing files, the only difference was the file name incremented by one, on ea
 
 ![](../assets/Abusing-Internet-Archive/differences.png)
 
-The first txt file, a powershell script is used to find Windows Defender status using [Get-MpComputerStatus](https://docs.microsoft.com/en-us/powershell/module/defender/get-mpcomputerstatus?view=windowsserver2019-ps&viewFallbackFrom=win10-ps). Depending on the result, one of two files will be downloaded. Unfortunately, I forgot to download "amsi1.txt" file to check  what it would do to Anti Malware Scan Interface, beginner's mistake!
+The first text file, a PowerShell script is used to find Windows Defender status using [Get-MpComputerStatus](https://docs.microsoft.com/en-us/powershell/module/defender/get-mpcomputerstatus?view=windowsserver2019-ps&viewFallbackFrom=win10-ps). Depending on the result, one of two files will be downloaded. Unfortunately, I forgot to download "amsi1.txt" file to check  what it would do to Anti Malware Scan Interface, beginner's mistake!
 
 ![](../assets/Abusing-Internet-Archive/detect-script.png)
 
@@ -44,7 +44,7 @@ ByteArray[3] = 23 xor 23 = 0
 ByteArray[4] = 62 xor 61 = 3
 ByteArray[5] = 52 xor 52 = 0
 
-Convert the resulting values to Unicode strings (16 bits) ```$string = [System.Text.Encoding]::Unicode.GetString($byteArray)``` and pipe the results to a file ```Write-Output $string | Out-File -FilePath c:\output\eset1.bin```, yelds a .NET PE executable file wich can be loaded into the application domain of the caller.
+Convert the resulting values to Unicode strings (16 bits) ```$string = [System.Text.Encoding]::Unicode.GetString($byteArray)``` and pipe the results to a file ```Write-Output $string | Out-File -FilePath c:\output\eset1.bin```, yields a .NET PE executable file which can be loaded into the application domain of the caller.
 
 I'm commenting a few lines to be able to safely generate any encoded files:
 
@@ -56,15 +56,15 @@ The last operation in this script is to download a new txt file "atomic1.txt" us
 
 ![](../assets/Abusing-Internet-Archive/atomic1-first-look.png)
 
-This new file is another PowerShell script, yet again with the extension name changed to txt.
+This new file is another PowerShell script, yet again with the extension name changed to "txt".
 
 ![](../assets/Abusing-Internet-Archive/atomic1-endofscript.png)
 
-To be able to increase the readability of the file, I've searched for any ocurrence of ";" and added 3 empty lines just to increase visibility of the various instructions on the file.
+To be able to increase the readability of the file, I've searched for any occurrence of ";" and added 3 empty lines just to increase visibility of the various instructions on the file.
 
 ![](../assets/Abusing-Internet-Archive/atomic1-eoi.png)
 
-This allows me to quickly use the minimap to spot large spaces between large variable texts:
+This allows me to quickly use the mini-map to spot large spaces between large variable texts:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-minimap.png)
 
@@ -86,7 +86,7 @@ The same commented lines in "atomic2":
 
 ![](../assets/Abusing-Internet-Archive/atomic2-commented-2.png)
 
-Using the same approach as with "eset1.txt" file, I've converted each of the variables to Unicode and used ```Write-Output``` and ```Out-File``` to execute the files in a sand-box VM to generate the files:
+Using the same approach as with "eset1.txt" file, I've converted each of the variables to Unicode and used ```Write-Output``` and ```Out-File``` to execute the files in a sand-box virtual machine to generate the files:
 
 ![](../assets/Abusing-Internet-Archive/generated-files.png)
 
@@ -114,7 +114,7 @@ Going back to the "eset1" file, using DNSpy decompiler to take a look at the sou
 
 ![](../assets/Abusing-Internet-Archive/eset1-decompiled.png)
 
-After further online investigation, the source used in the script was found in this blog post [Citadel Cyber Security](https://www.citadel.co.il/Home/Blog/1008):
+After further online investigation, the source code that served as inspiration for the author of the script was found in this blog post [Citadel Cyber Security](https://www.citadel.co.il/Home/Blog/1008):
 
 ![](../assets/Abusing-Internet-Archive/file_eset1_citadel.png)
 
@@ -130,7 +130,7 @@ By opening "atomic1-cli555" in DNSpy I was left confused, as expected:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_confused.png)
 
-After searching github for an unpacker that could get rid of the obfuscation appield to the file, I found [https://github.com/ViRb3/de4dot-cex/releases](https://github.com/ViRb3/de4dot-cex/releases), which was able to deobfuscate some parts of file before throwing an error message:
+After searching GitHub for an unpacker that could get rid of the obfuscation that has been applied to the file, I found [https://github.com/ViRb3/de4dot-cex/releases](https://github.com/ViRb3/de4dot-cex/releases), which was able to deobfuscate some parts of file before throwing an error message:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_fixed-deconfused.png)
 
@@ -142,6 +142,6 @@ A raw view of the script:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_possible_source_raw.png)
 
-The pastebin script side by side with the deobfuscated file:
+The following image shows the code available in the Pastebin script, side by side with the deobfuscated file:
 
 ![](../assets/Abusing-Internet-Archive/file_atomic1-555_pastebin.png)
