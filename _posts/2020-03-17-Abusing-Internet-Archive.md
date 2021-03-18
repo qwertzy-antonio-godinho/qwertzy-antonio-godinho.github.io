@@ -141,3 +141,17 @@ By having part of the deobfuscated file I was able to better understand it by se
 The following image shows the code available in the Pastebin script, side by side with the deobfuscated file:
 
 ![](../assets/Abusing-Internet-Archive/file_atomic1-555_pastebin.png)
+
+It was then time to take the then fixed PE files hashes and search online for information about them:
+
+![](../assets/Abusing-Internet-Archive/sha-256.png)
+
+Quickly searching Hybdrid-Analysis, OTX.AlienVault and VirusTotal returned no results.
+
+![](../assets/Abusing-Internet-Archive/osint-otx-av-hybridanalysis.png)
+
+So I decided to upload the files and see if anything would come up:
+
+![](../assets/Abusing-Internet-Archive/vt-eset1.png)
+![](../assets/Abusing-Internet-Archive/vt-atomic444.png)
+![](../assets/Abusing-Internet-Archive/vt-atomic555.png)
