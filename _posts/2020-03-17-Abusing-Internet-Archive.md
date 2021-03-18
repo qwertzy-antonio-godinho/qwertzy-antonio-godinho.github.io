@@ -1,3 +1,9 @@
+---
+layout: post
+title: Abusing Internet Archive
+subtitle: Case study - Abusing Internet Archive to deliver Malware
+tags: [malware, analysis]
+---
 
 # Star date 16th March 2021:
 
