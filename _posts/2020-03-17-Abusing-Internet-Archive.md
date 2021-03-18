@@ -37,12 +37,12 @@ In case the condition is true it defines 2 variables.
 
 The first variable contains xor'd byte values and the second has the unxor key. for every value in the byte values variable it xor's the value against the predefined key value containing 5 elements, according to the cursor position and it's counter value. The following is an example of the first 6 operations:
 
-ByteArray[0] = 121 xor 52 = 77
-ByteArray[1] = 12 xor 86 = 90
-ByteArray[2] = 210 xor 66 = 144
-ByteArray[3] = 23 xor 23 = 0
-ByteArray[4] = 62 xor 61 = 3
-ByteArray[5] = 52 xor 52 = 0
+1. ByteArray[0] = 121 xor 52 = 77
+2. ByteArray[1] = 12 xor 86 = 90
+3. ByteArray[2] = 210 xor 66 = 144
+4. ByteArray[3] = 23 xor 23 = 0
+5. ByteArray[4] = 62 xor 61 = 3
+6. ByteArray[5] = 52 xor 52 = 0
 
 Convert the resulting values to Unicode strings (16 bits) ```$string = [System.Text.Encoding]::Unicode.GetString($byteArray)``` and pipe the results to a file ```Write-Output $string | Out-File -FilePath c:\output\eset1.bin```, yields a .NET PE executable file which can be loaded into the application domain of the caller.
 
