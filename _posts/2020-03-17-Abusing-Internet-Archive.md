@@ -106,10 +106,6 @@ With the first 2 bytes removed from the files, Detect It Easy had no problem in 
 
 ![](../assets/Abusing-Internet-Archive/eset1_fixed.png)
 
-With file "atomic1-cli444", Detect It Easy only reported the linker information, it seems this file needs to be further worked on:
-
-![](../assets/Abusing-Internet-Archive/atomic1-444_fixed.png)
-
 File "atomic-cli555" reported that a .NET obfuscator named Confuser(1.X) had been used to obfuscate the .NET (v2.0.50727) file:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_fixed.png)
@@ -121,6 +117,10 @@ Going back to the "eset1" file, using DNSpy decompiler to take a look at the sou
 After further online investigation, the source used in the script was found in this blog post [Citadel Cyber Security](https://www.citadel.co.il/Home/Blog/1008):
 
 ![](../assets/Abusing-Internet-Archive/file_eset1_citadel.png)
+
+File "atomic1-cli444", Detect It Easy only reported the linker information, it seems this file needs to be further worked on:
+
+![](../assets/Abusing-Internet-Archive/atomic1-444_fixed.png)
 
 Another note was that file "atomic1-cli444" had its .reloc section being flagged as packed in Detect It Easy:
 
