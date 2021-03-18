@@ -138,10 +138,6 @@ By having part of the deobfuscated file I was able to better understand it by se
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_possible-source.png)
 
-A raw view of the script:
-
-![](../assets/Abusing-Internet-Archive/atomic1-555_possible_source_raw.png)
-
 The following image shows the code available in the Pastebin script, side by side with the deobfuscated file:
 
 ![](../assets/Abusing-Internet-Archive/file_atomic1-555_pastebin.png)
