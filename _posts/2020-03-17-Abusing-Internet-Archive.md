@@ -5,15 +5,17 @@ subtitle: Case study - Abusing Internet Archive to deliver Malware
 tags: [malware, analysis]
 ---
 
-# Star date, the 16th of March 2021:
+# Twitter post
 
-Original Twitter post:
+Having finished setup my lab environment, the time had come to start analysing malware. A good way to get access to recent malware samples is by joining Twitter and start following the infosec community. 
+
+On the 16th of March 2021 I saw the following tweet which seemed like a good starting point:
 
 ![](../assets/Abusing-Internet-Archive/twitter-post.png)
 
-Following on the above tweet I've decided to try to quickly download the files from the server and start analysing fresh malware samples.
+Following on the above tweet I've decided to try to quickly download the files from the server and start analysing them.
 
-# Objectives:
+# Objectives
 
 - Improve analysis skills
 - See how long it takes me to analyse
@@ -188,4 +190,4 @@ So I decided to upload the files and see if anything would come up:
 ![](../assets/Abusing-Internet-Archive/vt-atomic444.png)
 ![](../assets/Abusing-Internet-Archive/vt-atomic555.png)
 
-# A deeper look
+# Part 2 - A deeper look
