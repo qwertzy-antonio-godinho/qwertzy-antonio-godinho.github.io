@@ -47,7 +47,7 @@ The first text file analysed was named "detect1.txt". This file contained what l
 
 ![](../assets/Abusing-Internet-Archive/detect-script.png)
 
-Unfortunately I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation (insert face palm here!). By now I'm thinking it's better to pick another some other tweek, but as I already had the files I decided to carry on with the investigation.
+Unfortunately I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation (insert face palm here!). By now I'm thinking it's better to pick another another tweek, but as I already had the files I decided to carry on further down the rabbit hole.
 
 ### Improvement needed:
 
@@ -73,7 +73,6 @@ A block of instructions that apply the programmed logic for every value in the b
 4. ByteArray[3] = 23 xor 23 = 0
 5. ByteArray[4] = 62 xor 61 = 3
 6. ByteArray[5] = 52 xor 52 = 0
-
 
 To prevent malicious operations, I commented a few of the script lines of code in order to be able to output the results of the operation to a file:
 
@@ -154,33 +153,33 @@ After opening the files in a Hex Editor program, I noticed the first 2 bytes in 
 
 ![](../assets/Abusing-Internet-Archive/first-two-bytes.png)
 
-With the first 2 bytes removed from the files, Detect It Easy had no problem in identifying the files. The file generated from "eset1.txt" text file was identified as a .NET(v4.0.30319) file, and the linker used was Microsoft Linker(11.0)[ DLL32 ]:
+With the first 2 bytes removed from the files, Detect It Easy had no problem in identifying the files. The file generated from "eset1.txt" text file was identified as a .NET(v4.0.30319) 32 Bit DLL file, and the linker used was Microsoft Linker(11.0):
 
 ![](../assets/Abusing-Internet-Archive/eset1_fixed.png)
 
-The file "atomic-cli555" reported that a .NET obfuscator named Confuser(1.X) had been used to obfuscate the file:
+The file "atomic-cli555" is another 32 Bit DLL file. This time Detect It Easy reported that an obfuscator program named Confuser(1.X) had been used to obfuscate the file contents:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_fixed.png)
 
-Detect It Easy only reported the linker information while scanning file "atomic1-cli444":
+Detect It Easy reported the linker information while scanning file "atomic1-cli444", no compiler information was present although the file was identified as making use of the "GUI" Windows subsystem:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-444_fixed.png)
 
-Another observation highlighted was the file "atomic1-cli444" had the .reloc section flagged as packed:
+Another observation, the file "atomic1-cli444" had the .reloc section flagged as packed:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-444_fixed-packed-section.png)
 
-And the file overlay contains 4 bytes:
+And the file has an overlay made of 4 extra bytes appended to the file:
 
 ![](../assets/Abusing-Internet-Archive/atomic1-444_overlay.png)
 
-## .NET decompiler and online investigation
+# Part 2 - In search of the main payload
 
 Going back to the "eset1" file, using DNSpy decompiler to take a look at the source code:
 
 ![](../assets/Abusing-Internet-Archive/eset1-decompiled.png)
 
-After further online investigation, the source code that served as inspiration for the author of the script was found in this blog post [Citadel Cyber Security](https://www.citadel.co.il/Home/Blog/1008):
+After further online investigation, the source code that most likely served as inspiration for the author was found in this blog post [Citadel Cyber Security](https://www.citadel.co.il/Home/Blog/1008):
 
 ![](../assets/Abusing-Internet-Archive/file_eset1_citadel.png)
 
@@ -206,4 +205,19 @@ So I decided to upload the files and see if anything would come up:
 ![](../assets/Abusing-Internet-Archive/vt-atomic444.png)
 ![](../assets/Abusing-Internet-Archive/vt-atomic555.png)
 
-# Part 2 - A deeper look
+# Part 3 - Dumping the main payload
+
+![](../assets/Abusing-Internet-Archive/comparisson-original-hhunter.png)
+![](../assets/Abusing-Internet-Archive/diff.png)
+![](../assets/Abusing-Internet-Archive/floss_strings.png)
+![](../assets/Abusing-Internet-Archive/hhunter-dump.png)
+![](../assets/Abusing-Internet-Archive/hhunter-file-runs.png)
+![](../assets/Abusing-Internet-Archive/hhunter.png)
+![](../assets/Abusing-Internet-Archive/original-file-no-run.png)
+![](../assets/Abusing-Internet-Archive/pebear_rich_headers.png)
+![](../assets/Abusing-Internet-Archive/process-explorer-network-traffic.png)
+![](../assets/Abusing-Internet-Archive/process-monitor.png)
+![](../assets/Abusing-Internet-Archive/rich_pe.png)
+![](../assets/Abusing-Internet-Archive/vbindiff-original-vs-hhunter-dump.png)
+![](../assets/Abusing-Internet-Archive/wireshark-endpoints.png)
+![](../assets/Abusing-Internet-Archive/wireshark-traffic.png)
