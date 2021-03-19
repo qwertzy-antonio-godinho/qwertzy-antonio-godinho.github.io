@@ -211,8 +211,6 @@ So I decided to upload the files and see if anything would come up:
 
 ![](../assets/Abusing-Internet-Archive/diff.png)
 
-![](../assets/Abusing-Internet-Archive/floss_strings.png)
-
 ![](../assets/Abusing-Internet-Archive/hhunter-dump.png)
 
 ![](../assets/Abusing-Internet-Archive/hhunter-file-runs.png)
