@@ -7,9 +7,7 @@ tags: [malware, analysis]
 
 # Twitter post
 
-Having finished setup my lab environment, the time had come to start analysing malware. A good way to get access to recent malware samples is by joining Twitter and start following the infosec community. 
-
-On the 16th of March 2021 I saw the following tweet which seemed like a good starting point:
+Having finished setup my lab environment, the time had come to start analysing malware. Now all I needed was samples to play around with. On the 16th of March 2021 I saw the following tweet which seemed like a good starting point:
 
 ![](../assets/Abusing-Internet-Archive/twitter-post.png)
 
@@ -21,7 +19,8 @@ Following on the above tweet I've decided to try to quickly download the files f
 - See how long it takes me to analyse
 - Identify shortcomings with the toolset available in the lab
 - See how far I can go without any prior knowledge of the sample
-- Identify analysis gaps to later improve
+- Identify gaps in my analysis methodology
+- Document the process
 
 # Part 1 - Initial assessment
 ## Aquiring the samples
