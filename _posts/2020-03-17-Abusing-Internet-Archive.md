@@ -208,16 +208,29 @@ So I decided to upload the files and see if anything would come up:
 # Part 3 - Dumping the main payload
 
 ![](../assets/Abusing-Internet-Archive/comparisson-original-hhunter.png)
+
 ![](../assets/Abusing-Internet-Archive/diff.png)
+
 ![](../assets/Abusing-Internet-Archive/floss_strings.png)
+
 ![](../assets/Abusing-Internet-Archive/hhunter-dump.png)
+
 ![](../assets/Abusing-Internet-Archive/hhunter-file-runs.png)
+
 ![](../assets/Abusing-Internet-Archive/hhunter.png)
+
 ![](../assets/Abusing-Internet-Archive/original-file-no-run.png)
+
 ![](../assets/Abusing-Internet-Archive/pebear_rich_headers.png)
+
 ![](../assets/Abusing-Internet-Archive/process-explorer-network-traffic.png)
+
 ![](../assets/Abusing-Internet-Archive/process-monitor.png)
+
 ![](../assets/Abusing-Internet-Archive/rich_pe.png)
+
 ![](../assets/Abusing-Internet-Archive/vbindiff-original-vs-hhunter-dump.png)
+
 ![](../assets/Abusing-Internet-Archive/wireshark-endpoints.png)
+
 ![](../assets/Abusing-Internet-Archive/wireshark-traffic.png)
