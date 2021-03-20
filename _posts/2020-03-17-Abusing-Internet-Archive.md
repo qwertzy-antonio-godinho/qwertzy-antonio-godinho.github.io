@@ -45,7 +45,7 @@ The first text file analysed was named "detect1.txt". This file contained what l
 
 ![](../assets/Abusing-Internet-Archive/detect-script.png)
 
-Unfortunately I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation. By now I'm thinking it's better to look for another tweet, but as I already have the files, I decided to continue.
+Unfortunately I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation. By now I'm thinking it's better to look for another tweet, but as I already have the files I decided to continue.
 
 ### Shortcoming and improvement
 
@@ -65,7 +65,7 @@ As the sample was not obfuscated, the main logic of the code is easily understan
 
 The first variable defines what looks like to be a previously xor'd set of numerical values, while the second variable contains a smaller set of numerical values. The third variable is a counter.
 
-Following there is a block of instructions that apply the next logic over every value in the byte values variable. The logic objective is to xor (exclusive or operation) the values in the first variable against the predefined set of values in the second variable, according to the cursor position and its counter value. To exemplify the first 6 operations:
+The next block of instructions take every value in the byte values variable with the objective to xor (exclusive or operation) the values in the variable against the predefined set of values in the second variable, while taking into account the cursor position and its counter value. To exemplify the first 6 operations:
 
 1. ByteArray[0] = 121 xor 52 = 77
 2. ByteArray[1] = 12 xor 86 = 90
