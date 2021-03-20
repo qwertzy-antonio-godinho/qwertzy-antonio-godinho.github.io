@@ -7,65 +7,65 @@ tags: [malware, analysis]
 
 # Twitter post
 
-Having finished the setup of my lab environment, the time had come to start analysing malware. All I need is samples to play around with. On the 16th of March 2021 I saw the following tweet which seemed like a good starting point:
+Having finished building and setting up a lab environment for malware analysis, the time had come to put it to use. Now all I need were malware samples to play around with. And so on the 16th of March 2021 while searching Twitter for malware opendirs, I noticed the following tweet:
 
 ![](../assets/Abusing-Internet-Archive/twitter-post.png)
 
-Following on the above tweet I went ahead and quickly downloaded the files from the server and started seeing how far I could go with my analysis.
+ This seemed like a good starting point to aquire a sample, and so I went ahead and downloaded the files from the server into my Gateway virtual machine.
 
 # Objectives
 
-I felt it was important to have a few objectives and consider outcomes to capitalize on the time I was prepared to spend with the analysis. So, with that in mind I wanted to:
-
 - Improve analysis skills
-- Track how long it would take me to analyse
-- Identify shortcomings in the toolset available in the lab
-- See how far I can go without any prior knowledge of the sample
-- Be able to find data from other sources to allow me to progress with the analysis
+- Track how long I take to analyse
+- Identify shortcomings in the analysis tools in the environment
+- See how far I can go without prior knowledge of the sample details
+- Gather intelligence data from external sources to aid in the analysis process
 - Identify gaps in my analysis methodology
-- Document the process
-- Produce a list of improvements or lessons learned
+- Document the process to improve report writting skill
+- Identify improvements and lessons learned
 
-# Part 1 - Initial assessment
+# Part 1 - The initial steps
 ## Aquiring the samples
 
-Using the web browser I typed the URL link and downloaded all files hosted on the website to my Gateway virtual machine. The list of file extensions hosted on the site included txt, xml, sqlite and torrent files. These were stored in different directories named atomic1 and eset_202102:
+Using a web browser I typed the URL link and downloaded all files hosted on the website to my Gateway virtual machine. Various different types of files were hosted on the site. The list of file extensions included txt, xml, sqlite and torrent files. These files were saved over two different directories named atomic1 and eset_202102:
 
 ![](../assets/Abusing-Internet-Archive/file-list.png)
 
-### Improvement
+### Shortcoming and improvement
 
-- The analysis environment needs to provide a way to automate downloading of files recursively from a given website.
+- Automate the download process by installing a web scraping tool.
 
-## A quick first look at the samples
+## A quick look at the files
 
-Looking at the files names they followed a similar structure. Using vbindiff to check for differences between files at a binary level, the only difference reported was in the file name. Another observation made was, the files were simple text files:
+The files names have a similar naming pattern. Vbindiff shows differences between files at a binary level, and the only difference shown was the file name. These files were non executable simple text files:
 
 ![](../assets/Abusing-Internet-Archive/differences.png)
 
-The first text file analysed was named "detect1.txt". This file contained what looked like a PowerShell script with a simple condition, finding the Windows Defender status using <span class="highlight-green">[Get-MpComputerStatus](https://docs.microsoft.com/en-us/powershell/module/defender/get-mpcomputerstatus?view=windowsserver2019-ps&viewFallbackFrom=win10-ps)</span>. Depending on the result, the script then proceeds to download the "amsi1.txt" or "eset1.txt" file. 
+The first text file analysed was named "detect1.txt". This file contained what looked like a PowerShell script. Within it there was a simple condition, whose purpose was to find the Windows Defender status using <span class="highlight-green">Get-MpComputerStatus</span>. Depending on the evaluation result, the script then proceeds to download the "amsi1.txt" or "eset1.txt" file. 
 
 ![](../assets/Abusing-Internet-Archive/detect-script.png)
 
-Unfortunately I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation (insert face palm here!). By now I'm thinking it's better to pick another another tweek, but as I already had the files I decided to carry on further down the rabbit hole.
+Unfortunately I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation. By now I'm thinking it's better to look for another tweet, but as I already have the files, I decided to continue.
 
-### Improvement
+### Shortcoming and improvement
 
-- Use a recursive website scraper.
+- Automate the process to prevent manual errors by using a recursive website scraper.
 
 The text file "eset1.txt" also contains what it looks like another PowerShell script:
 
 ![](../assets/Abusing-Internet-Archive/eset1-1st-look.png)
 
-The script starts with a condition, and depending on the result of <span class="highlight-green">if (-not ([System.Management.Automation.PSTypeName]"BP.AMS").Type)</span> the script can follow a different execution path. 
+The script starts with a condition, and depending on the result of <span class="highlight-green">if (-not ([System.Management.Automation.PSTypeName]"BP.AMS").Type)</span>, the script follows a different execution path. 
 
-In case the condition is false, it executes <span class="highlight-green">[BP.AMS]::Disable()</span> to disable the Anti Malware Scan program. Otherwise the script contains 2 variables.
+In case the evalued condition is false, it executes <span class="highlight-green">[BP.AMS]::Disable()</span> to disable the Anti Malware Scan program. Otherwise the script defines three variables <span class="highlight-green">$byteArray</span>, <span class="highlight-green">$KeyArray</span> and <span class="highlight-green">$keyposition</span>.
 
 ![](../assets/Abusing-Internet-Archive/eset1-logic.png)
 
-The first variable defines what looks like to be a previously xor'd set of numerical values, while the second variable contains a smaller set of numerical values. As the sample was not obfuscated, the main logic of the code is easily understandable.
+As the sample was not obfuscated, the main logic of the code is easily understandable.
 
-A block of instructions that apply the programmed logic for every value in the byte values variable. It xor's the values in the first variable against the predefined set of values in the second variable, according to the cursor position and its counter value. To exemplify the first 6 operations:
+The first variable defines what looks like to be a previously xor'd set of numerical values, while the second variable contains a smaller set of numerical values. The third variable is a counter.
+
+Following there is a block of instructions that apply the next logic over every value in the byte values variable. The logic objective is to xor (exclusive or operation) the values in the first variable against the predefined set of values in the second variable, according to the cursor position and its counter value. To exemplify the first 6 operations:
 
 1. ByteArray[0] = 121 xor 52 = 77
 2. ByteArray[1] = 12 xor 86 = 90
@@ -74,11 +74,11 @@ A block of instructions that apply the programmed logic for every value in the b
 5. ByteArray[4] = 62 xor 61 = 3
 6. ByteArray[5] = 52 xor 52 = 0
 
-To prevent malicious operations, I commented a few of the script lines of code in order to be able to output the results of the operation to a file:
+To prevent execution of malicious operations I commented a few of the lines of code:
 
 ![](../assets/Abusing-Internet-Archive/eset1-commented-1.png)
 
-I've added the following lines on to the PowerShell script:
+In order to be able to output the results of the operation to a file for later analysis I've added the following lines to the PowerShell script:
 
 <pre><code class="bash">$string = [System.Text.Encoding]::Unicode.GetString($byteArray)
 Write-Output $string | Out-File -FilePath c:\output\eset1.bin</code></pre>
@@ -209,15 +209,15 @@ So I decided to upload the files and see if anything would come up:
 
 ![](../assets/Abusing-Internet-Archive/original-file-no-run.png)
 
+![](../assets/Abusing-Internet-Archive/pebear_rich_headers.png)
+
+![](../assets/Abusing-Internet-Archive/rich_pe.png)
+
 ![](../assets/Abusing-Internet-Archive/process-monitor.png)
 
 ![](../assets/Abusing-Internet-Archive/process-explorer-network-traffic.png)
 
 ![](../assets/Abusing-Internet-Archive/wireshark-traffic.png)
-
-![](../assets/Abusing-Internet-Archive/pebear_rich_headers.png)
-
-![](../assets/Abusing-Internet-Archive/rich_pe.png)
 
 ![](../assets/Abusing-Internet-Archive/hhunter.png)
 
@@ -229,6 +229,6 @@ So I decided to upload the files and see if anything would come up:
 
 ![](../assets/Abusing-Internet-Archive/vbindiff-original-vs-hhunter-dump.png)
 
-![](../assets/Abusing-Internet-Archive/wireshark-endpoints.png)
-
 ![](../assets/Abusing-Internet-Archive/diff.png)
+
+![](../assets/Abusing-Internet-Archive/wireshark-endpoints.png)
