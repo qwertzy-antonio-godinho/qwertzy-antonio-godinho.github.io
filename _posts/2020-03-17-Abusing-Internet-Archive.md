@@ -199,12 +199,6 @@ The following image shows the code available in the Pastebin script, side by sid
 
 ![](../assets/Abusing-Internet-Archive/file_atomic1-555_pastebin.png)
 
-So I decided to upload the files and see if anything would come up:
-
-![](../assets/Abusing-Internet-Archive/vt-eset1.png)
-![](../assets/Abusing-Internet-Archive/vt-atomic444.png)
-![](../assets/Abusing-Internet-Archive/vt-atomic555.png)
-
 # Part 3 - Dumping the main payload
 
 ![](../assets/Abusing-Internet-Archive/original-file-no-run.png)
