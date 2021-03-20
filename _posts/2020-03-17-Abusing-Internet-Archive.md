@@ -33,7 +33,7 @@ Using the web browser I typed the URL link and downloaded all files hosted on th
 
 ![](../assets/Abusing-Internet-Archive/file-list.png)
 
-### Improvement needed:
+### Improvement
 
 - The analysis environment needs to provide a way to automate downloading of files recursively from a given website.
 
@@ -49,7 +49,7 @@ The first text file analysed was named "detect1.txt". This file contained what l
 
 Unfortunately I made a beginner's mistake at this point. I completely forgot to download the file "amsi1.txt" for further investigation (insert face palm here!). By now I'm thinking it's better to pick another another tweek, but as I already had the files I decided to carry on further down the rabbit hole.
 
-### Improvement needed:
+### Improvement
 
 - Use a recursive website scraper.
 
@@ -191,7 +191,7 @@ After searching GitHub for an unpacker that could get rid of the obfuscation tha
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_fixed-deconfused.png)
 
-By having part of the deobfuscated file I was able to better understand it by searching online and it seems the functionality in the script is derived from a .NET C# script dating back from 2015 named "Aeonhack RunPE C#" (VB version is also available) in [pastebin](https://pastebin.com/Dzhad8rB):
+By having part of the file deobfuscated I was able to better understand it by searching online and it seems the functionality in the script is derived from a .NET C# script dating back from 2015 named "Aeonhack RunPE C#" (VB version is also available) in [pastebin](https://pastebin.com/Dzhad8rB):
 
 ![](../assets/Abusing-Internet-Archive/atomic1-555_possible-source.png)
 
@@ -207,28 +207,28 @@ So I decided to upload the files and see if anything would come up:
 
 # Part 3 - Dumping the main payload
 
-![](../assets/Abusing-Internet-Archive/comparisson-original-hhunter.png)
-
-![](../assets/Abusing-Internet-Archive/diff.png)
-
-![](../assets/Abusing-Internet-Archive/hhunter-dump.png)
-
-![](../assets/Abusing-Internet-Archive/hhunter-file-runs.png)
-
-![](../assets/Abusing-Internet-Archive/hhunter.png)
-
 ![](../assets/Abusing-Internet-Archive/original-file-no-run.png)
-
-![](../assets/Abusing-Internet-Archive/pebear_rich_headers.png)
-
-![](../assets/Abusing-Internet-Archive/process-explorer-network-traffic.png)
 
 ![](../assets/Abusing-Internet-Archive/process-monitor.png)
 
+![](../assets/Abusing-Internet-Archive/process-explorer-network-traffic.png)
+
+![](../assets/Abusing-Internet-Archive/wireshark-traffic.png)
+
+![](../assets/Abusing-Internet-Archive/pebear_rich_headers.png)
+
 ![](../assets/Abusing-Internet-Archive/rich_pe.png)
+
+![](../assets/Abusing-Internet-Archive/hhunter.png)
+
+![](../assets/Abusing-Internet-Archive/hhunter-dump.png)
+
+![](../assets/Abusing-Internet-Archive/comparisson-original-hhunter.png)
+
+![](../assets/Abusing-Internet-Archive/hhunter-file-runs.png)
 
 ![](../assets/Abusing-Internet-Archive/vbindiff-original-vs-hhunter-dump.png)
 
 ![](../assets/Abusing-Internet-Archive/wireshark-endpoints.png)
 
-![](../assets/Abusing-Internet-Archive/wireshark-traffic.png)
+![](../assets/Abusing-Internet-Archive/diff.png)
