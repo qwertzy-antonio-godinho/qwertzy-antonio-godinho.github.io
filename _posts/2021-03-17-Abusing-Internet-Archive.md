@@ -63,9 +63,9 @@ In case the evalued condition is false, it executes <span class="highlight-green
 
 As the sample was not obfuscated, the main logic of the code is easily understandable.
 
-The first variable defines what looks like to be a previously xor'd set of numerical values, while the second variable contains a smaller set of numerical values. The third variable is a counter.
+The first variable defines what looks like to be a previously xor'd set of numerical values, while the second variable contains a smaller set of numerical values. The third variable seems to be a counter.
 
-The next block of instructions take every value in the byte values variable with the objective to xor (exclusive or operation) the values in the variable against the predefined set of values in the second variable, while taking into account the cursor position and its counter value. To exemplify the first 6 operations:
+The next block of instructions take every value in the byte values variable with the objective to compare each Bit value (exclusive or operation) in the variable against the predefined set of values in the second variable, while taking into account the cursor position and its counter value to output the correct values. To exemplify the first 6 operations:
 
 1. ByteArray[0] = 121 xor 52 = 77
 2. ByteArray[1] = 12 xor 86 = 90
@@ -74,7 +74,7 @@ The next block of instructions take every value in the byte values variable with
 5. ByteArray[4] = 62 xor 61 = 3
 6. ByteArray[5] = 52 xor 52 = 0
 
-To prevent execution of malicious operations I commented a few of the lines of code:
+To prevent execution of malicious operations I commented a few of the lines in the code:
 
 ![](../assets/Abusing-Internet-Archive/eset1-commented-1.png)
 
@@ -87,7 +87,7 @@ The first line converts the variable to Unicode string (using 16 bits), while th
 
 ![](../assets/Abusing-Internet-Archive/eset1-commented-2.png)
 
-I also commented the last command <span class="highlight-green">IEX (New-Object Net.WebClient).DownloadString</span>, as I previously had downloaded the file.
+As I had downloaded the files from the server, I commented the last command <span class="highlight-green">IEX (New-Object Net.WebClient).DownloadString</span>.
 
 The "atomic1.txt" file is another PowerShell script, a longer one than the one contained in the previous file. The top of the file:
 
