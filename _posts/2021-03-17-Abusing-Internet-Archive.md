@@ -5,7 +5,7 @@ subtitle: Case study - Abusing Internet Archive to deliver Malware
 tags: [malware, analysis]
 ---
 
-<span class="highlight-green">Writeup in progress!</span>
+<span class="highlight-green">Writeup still in progress!</span>
 
 # Twitter post
 
