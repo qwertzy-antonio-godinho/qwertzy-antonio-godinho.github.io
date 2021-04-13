@@ -5,6 +5,8 @@ subtitle: Case study - Abusing Internet Archive to deliver Malware
 tags: [malware, analysis]
 ---
 
+<span class="highlight-green">Writeup in progress!</span>
+
 # Twitter post
 
 Having finished building and setting up a lab environment for malware analysis, the time had come to put it to use. Now all I need were malware samples to play around with. And so on the 16th of March 2021 while searching Twitter for malware opendirs, I noticed the following tweet:
