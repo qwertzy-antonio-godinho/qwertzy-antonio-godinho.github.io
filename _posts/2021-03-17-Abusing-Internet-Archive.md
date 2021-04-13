@@ -205,8 +205,6 @@ The following image shows the code available in the Pastebin script, side by sid
 
 ![](../assets/Abusing-Internet-Archive/original-file-no-run.png)
 
-![](../assets/Abusing-Internet-Archive/pebear_rich_headers.png)
-
 ![](../assets/Abusing-Internet-Archive/rich_pe.png)
 
 ![](../assets/Abusing-Internet-Archive/process-monitor.png)
